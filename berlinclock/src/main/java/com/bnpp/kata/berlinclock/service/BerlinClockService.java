@@ -16,30 +16,27 @@ public class BerlinClockService {
         String secondsLamp = getSecondsLamp(time);
         String hourLamp = getHoursLamp(time);
         String oneHourLamp = getOneHourLamp(time);
-
+        DetailedBerlinTime detailedBerlinTime = createDetailedBerlinTime(secondsLamp,hourLamp,oneHourLamp);
+        
         return BerlinClockResponse.builder()
-                .detailedBerlinTime(DetailedBerlinTime.builder().secondsLamp(secondsLamp).topFiveHourLamps(hourLamp)
-                        .bottomOneHourLamps(oneHourLamp).build())
+                .detailedBerlinTime(detailedBerlinTime)
+                .build();
+    }
+
+    private DetailedBerlinTime createDetailedBerlinTime(String secondsLamp, String hourLamp, String oneHourLamp) {
+
+        return DetailedBerlinTime.builder()
+                .secondsLamp(secondsLamp)
+                .topFiveHourLamps(hourLamp)
+                .bottomOneHourLamps(oneHourLamp)
                 .build();
     }
 
     private String getOneHourLamp(TimeComponent time) {
 
         int hours = Integer.parseInt(time.getHours());
-        String hoursLamp;
-
-        if (hours % 5 == 4)
-            hoursLamp = "RRRR";
-        else if (hours % 5 == 3)
-            hoursLamp = "RRRO";
-        else if (hours % 5 == 2)
-            hoursLamp = "RROO";
-        else if (hours % 5 == 1)
-            hoursLamp = "ROOO";
-        else
-            hoursLamp = "OOOO";
-
-        return hoursLamp;
+        return IntStream.range(0, 4).mapToObj(lampIndex -> (lampIndex < hours % 5) ? Lamp.RED.getValue() : Lamp.OFF.getValue())
+                .collect(Collectors.joining());
     }
 
     private static String getSecondsLamp(TimeComponent time) {
