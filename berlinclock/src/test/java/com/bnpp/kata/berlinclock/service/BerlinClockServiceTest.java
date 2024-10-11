@@ -269,4 +269,13 @@ public class BerlinClockServiceTest {
 
         assertThrows(TimeFormatException.class, () -> berlinClockService.convertToBerlinTime(timeComponent));
     }
+
+    @Test
+    @DisplayName("Throw Time Format Exception : if the input minutes are empty")
+    public void convertToBerlinTime_checkWhetherTheInputMinutesAreNotEmpty_shouldThrowTimeFormatException() {
+
+        TimeComponent timeComponent = TimeComponent.builder().hours(ZERO).minutes(EMPTY).seconds(ZERO).build();
+
+        assertThrows(TimeFormatException.class, () -> berlinClockService.convertToBerlinTime(timeComponent));
+    }
 }
