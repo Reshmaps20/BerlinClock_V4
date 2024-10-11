@@ -47,4 +47,13 @@ public class BerlinClockControllerTest {
                         .content(new ObjectMapper().writeValueAsString(request)))
                         .andExpect(status().isBadRequest());
     }
+
+    @Test
+    @DisplayName("Rest API should throw internal server error when no input is passed")
+    public void convertTime_nullRequest_shouldReturnInternalServerError() throws Exception {
+
+        mockMvc.perform(post("/api/berlinclock").contentType(MediaType.APPLICATION_JSON)
+                                .content(new ObjectMapper().writeValueAsString(null)))
+                .andExpect(status().isInternalServerError());
+    }
 }
