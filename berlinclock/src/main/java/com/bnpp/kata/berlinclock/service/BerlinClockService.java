@@ -34,6 +34,9 @@ public class BerlinClockService {
         if (time.getMinutes() == null || time.getMinutes().isEmpty()) {
             throw new TimeFormatException(TIME_IS_EMPTY_ERROR);
         }
+        if (time.getSeconds()== null || time.getSeconds().isEmpty()) {
+            throw new TimeFormatException(TIME_IS_EMPTY_ERROR);
+        }
     }
 
     private Map<String, String> calculateLamps(TimeComponent time) {
