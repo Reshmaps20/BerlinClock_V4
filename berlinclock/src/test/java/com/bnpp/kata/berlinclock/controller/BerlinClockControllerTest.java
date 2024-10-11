@@ -35,4 +35,16 @@ public class BerlinClockControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.berlinTime").value(BERLIN_TIME));
     }
+
+    @Test
+    @DisplayName("Rest API should throw exception when invalid input is passed")
+    public void convertTime_invalidRequest_shouldReturnBadRequest() throws Exception {
+
+        TimeComponent timeComponent = TimeComponent.builder().hours(EMPTY).minutes(FIFTYNINE).seconds(FIFTYNINE).build();
+        BerlinClockRequest request = BerlinClockRequest.builder().time(timeComponent).build();
+
+        mockMvc.perform(post("/api/berlinclock").contentType(MediaType.APPLICATION_JSON)
+                        .content(new ObjectMapper().writeValueAsString(request)))
+                        .andExpect(status().isBadRequest());
+    }
 }
