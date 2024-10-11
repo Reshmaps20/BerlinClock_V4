@@ -1,12 +1,13 @@
 package com.bnpp.kata.berlinclock.service;
 
 import static com.bnpp.kata.berlinclock.constants.Constants.*;
-import com.bnpp.kata.berlinclock.exception.TimeFormatException;
 import com.bnpp.kata.berlinclock.model.BerlinClockResponse;
 import com.bnpp.kata.berlinclock.model.DetailedBerlinTime;
 import com.bnpp.kata.berlinclock.model.TimeComponent;
 import com.bnpp.kata.berlinclock.store.Lamp;
 import com.bnpp.kata.berlinclock.store.LampRow;
+import com.bnpp.kata.berlinclock.validation.TimeValidator;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,29 +15,19 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 @Service
+@RequiredArgsConstructor
 public class BerlinClockService {
+
+    private final TimeValidator timeValidator;
 
     public BerlinClockResponse convertToBerlinTime(TimeComponent time) {
 
-        validateTimeValues(time);
+        timeValidator.validateTimeValues(time);
         Map<String, String> lamps = calculateLamps(time);
 
         return BerlinClockResponse.builder()
                 .detailedBerlinTime(createDetailedBerlinTime(lamps))
                 .build();
-    }
-
-    private void validateTimeValues(TimeComponent time) {
-
-        if (time.getHours() == null || time.getHours().isEmpty()) {
-            throw new TimeFormatException(TIME_IS_EMPTY_ERROR);
-        }
-        if (time.getMinutes() == null || time.getMinutes().isEmpty()) {
-            throw new TimeFormatException(TIME_IS_EMPTY_ERROR);
-        }
-        if (time.getSeconds()== null || time.getSeconds().isEmpty()) {
-            throw new TimeFormatException(TIME_IS_EMPTY_ERROR);
-        }
     }
 
     private Map<String, String> calculateLamps(TimeComponent time) {
