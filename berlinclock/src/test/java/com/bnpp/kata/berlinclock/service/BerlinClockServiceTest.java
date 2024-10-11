@@ -140,4 +140,15 @@ public class BerlinClockServiceTest {
 
         assertThat(response.getDetailedBerlinTime().getBottomOneHourLamps()).isEqualTo(FIRST_TWO_LAMPS_RED);
     }
+
+    @Test
+    @DisplayName("One Hour Row : first three lamps should be RED when hour divided by 5 has reminder 3")
+    public void convertToBerlinTime_whenHourDividedByFiveHasRemainderThree_firstThreeLampShouldBeRED() {
+
+        TimeComponent timeComponent = TimeComponent.builder().hours(EIGHTEEN).minutes(ZERO).seconds(ZERO).build();
+
+        BerlinClockResponse response = berlinClockService.convertToBerlinTime(timeComponent);
+
+        assertThat(response.getDetailedBerlinTime().getBottomOneHourLamps()).isEqualTo(FIRST_THREE_LAMPS_RED);
+    }
 }
