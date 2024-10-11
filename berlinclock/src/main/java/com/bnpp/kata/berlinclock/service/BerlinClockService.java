@@ -29,7 +29,11 @@ public class BerlinClockService {
         int minutes = Integer.parseInt(time.getMinutes());
         StringBuilder lamps = new StringBuilder();
 
-        if (minutes >= 5 && minutes < 10) {
+        if (minutes >= 10 && minutes < 15) {
+            lamps.append(Lamp.YELLOW.getValue());
+            lamps.append(Lamp.YELLOW.getValue());
+        }
+        else if (minutes >= 5 && minutes < 10) {
             lamps.append(Lamp.YELLOW.getValue());
         }
         while (lamps.length() < 11) {
