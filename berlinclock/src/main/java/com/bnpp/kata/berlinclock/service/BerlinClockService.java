@@ -17,11 +17,16 @@ public class BerlinClockService {
         String hourLamp = getHoursLamp(time);
         String oneHourLamp = getOneHourLamp(time);
         String fiveMinuteLamp = getMinuteLamp(time);
-        DetailedBerlinTime detailedBerlinTime = createDetailedBerlinTime(secondsLamp,hourLamp,oneHourLamp,fiveMinuteLamp);
+        String oneMinuteLamp = getOneMinuteLamp(time);
+        DetailedBerlinTime detailedBerlinTime = createDetailedBerlinTime(secondsLamp,hourLamp,oneHourLamp,fiveMinuteLamp,oneMinuteLamp);
         
         return BerlinClockResponse.builder()
                 .detailedBerlinTime(detailedBerlinTime)
                 .build();
+    }
+
+    private String getOneMinuteLamp(TimeComponent time) {
+        return "OOOO";
     }
 
     private String getMinuteLamp(TimeComponent time) {
@@ -34,13 +39,14 @@ public class BerlinClockService {
         return mintLamps.replace("YYY", "YYR");
     }
 
-    private DetailedBerlinTime createDetailedBerlinTime(String secondsLamp, String hourLamp, String oneHourLamp, String fiveMinuteLamp) {
+    private DetailedBerlinTime createDetailedBerlinTime(String secondsLamp, String hourLamp, String oneHourLamp, String fiveMinuteLamp, String oneMinuteLamp) {
 
         return DetailedBerlinTime.builder()
                 .secondsLamp(secondsLamp)
                 .topFiveHourLamps(hourLamp)
                 .bottomOneHourLamps(oneHourLamp)
                 .topFiveMinuteLamps(fiveMinuteLamp)
+                .bottomOneMinuteLamps(oneMinuteLamp)
                 .build();
     }
 
