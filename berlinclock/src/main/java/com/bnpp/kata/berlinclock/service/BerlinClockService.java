@@ -24,9 +24,13 @@ public class BerlinClockService {
     }
 
     private String getOneHourLamp(TimeComponent time) {
+
         int hours = Integer.parseInt(time.getHours());
         String hoursLamp;
-        if (hours % 5 == 1)
+
+        if (hours % 5 == 2)
+            hoursLamp = "RROO";
+        else if (hours % 5 == 1)
             hoursLamp = "ROOO";
         else
             hoursLamp = "OOOO";
