@@ -10,17 +10,26 @@ public class BerlinClockService {
 
     public BerlinClockResponse convertToBerlinTime(TimeComponent time) {
 
-        String hourLamp ;
+        String secondsLamp = getSecondsLamp(time);
+        String hourLamp = getHoursLamp(time);
 
-        String secondsLamp = (Integer.parseInt(time.getSeconds()) % 2 == 0) ? "Y" : "O";
+        return BerlinClockResponse.builder()
+                .detailedBerlinTime(DetailedBerlinTime.builder().secondsLamp(secondsLamp).topFiveHourLamps(hourLamp).build())
+                .build();
+    }
+
+    private static String getSecondsLamp(TimeComponent time) {
+        return (Integer.parseInt(time.getSeconds()) % 2 == 0) ? "Y" : "O";
+    }
+
+    private static String getHoursLamp(TimeComponent time) {
+
+        String hourLamp;
         if (Integer.parseInt(time.getHours()) >= 5 && Integer.parseInt(time.getHours()) <= 9) {
             hourLamp = "ROOO";
         } else {
             hourLamp = "OOOO";
         }
-
-        return BerlinClockResponse.builder()
-                .detailedBerlinTime(DetailedBerlinTime.builder().secondsLamp(secondsLamp).topFiveHourLamps(hourLamp).build())
-                .build();
+        return hourLamp;
     }
 }
