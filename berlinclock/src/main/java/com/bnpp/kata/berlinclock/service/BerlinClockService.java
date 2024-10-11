@@ -29,6 +29,7 @@ public class BerlinClockService {
         return BerlinClockResponse.builder()
                 .digitalTime(convertToDigitalTime(time))
                 .detailedBerlinTime(createDetailedBerlinTime(lamps))
+                .berlinTime(calculateBerlinTime(lamps))
                 .build();
     }
 
@@ -84,5 +85,16 @@ public class BerlinClockService {
         return Arrays.stream(new int[] { Integer.parseInt(time.getHours()), Integer.parseInt(time.getMinutes()),Integer.parseInt(time.getSeconds()) })
                 .mapToObj(timeValue -> String.format(TIME_FORMAT, timeValue))
                 .collect(Collectors.joining(TIME_SEPARATOR));
+    }
+
+    private String calculateBerlinTime(Map<String, String> lamps) {
+
+        return String.join(" ",
+                lamps.get(LampRow.SECONDS_LAMP.getName()),
+                lamps.get(LampRow.TOP_HOUR_LAMP.getName()),
+                lamps.get(LampRow.BOTTOM_HOUR_LAMP.getName()),
+                lamps.get(LampRow.TOP_MINUTE_LAMP.getName()),
+                lamps.get(LampRow.BOTTOM_MINUTE_LAMP.getName())
+        );
     }
 }

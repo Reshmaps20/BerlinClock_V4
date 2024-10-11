@@ -12,6 +12,7 @@ public class TestConstants {
     public static final String EIGHTEEN = "18";
     public static final String TWENTY = "20";
     public static final String TWENTYTHREE = "23";
+    public static final String FIFTYNINE = "59";
     public static final String SEVENTY = "70";
     public static final String MINUS_ONE = "-1";
     public static final String YELLOW = "Y";
@@ -32,4 +33,5 @@ public class TestConstants {
     public static final String ALL_FOUR_LAMPS_YELLOW = "YYYY";
     public static final String EMPTY = "";
     public static final String DIGITAL_TIME = "14:23:05";
+    public static final String BERLIN_TIME = "O RRRR RRRO YYRYYRYYRYY YYYY";
 }
