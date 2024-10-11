@@ -16,6 +16,7 @@ public class BerlinClockServiceTest {
     private static final String SIX = "06";
     private static final String TWELVE = "12";
     private static final String FOURTEEN = "14";
+    private static final String FIFTEEN = "15";
     private static final String EIGHTEEN = "18";
     private static final String TWENTYTHREE = "23";
     private static final String YELLOW = "Y";
@@ -28,6 +29,7 @@ public class BerlinClockServiceTest {
     private static final String ALL_11_LAMPS_OFF = "OOOOOOOOOOO";
     public static final String ONE_LAMP_YELLOW_OUT_OF_ELEVEN = "YOOOOOOOOOO";
     public static final String TWO_LAMP_YELLOW_OUT_OF_ELEVEN = "YYOOOOOOOOO";
+    public static final String THIRD_LAMP_RED_OUT_OF_ELEVEN = "YYROOOOOOOO";
 
     @BeforeEach
     public void setup() {
@@ -197,5 +199,16 @@ public class BerlinClockServiceTest {
         BerlinClockResponse response = berlinClockService.convertToBerlinTime(timeComponent);
 
         assertThat(response.getDetailedBerlinTime().getTopFiveMinuteLamps()).isEqualTo(TWO_LAMP_YELLOW_OUT_OF_ELEVEN);
+    }
+
+    @Test
+    @DisplayName("Five Minute Row : third lamp should be RED when given minute is 15")
+    public void convertToBerlinTime_passMinutesFifteen_fiveMinuteRowThirdLampShouldBeRed() {
+
+        TimeComponent timeComponent = TimeComponent.builder().hours(ZERO).minutes(FIFTEEN).seconds(ZERO).build();
+
+        BerlinClockResponse response = berlinClockService.convertToBerlinTime(timeComponent);
+
+        assertThat(response.getDetailedBerlinTime().getTopFiveMinuteLamps()).isEqualTo(THIRD_LAMP_RED_OUT_OF_ELEVEN);
     }
 }
