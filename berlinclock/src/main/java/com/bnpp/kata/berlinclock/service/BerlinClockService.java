@@ -25,11 +25,15 @@ public class BerlinClockService {
     private static String getHoursLamp(TimeComponent time) {
 
         String hourLamp;
-        if (Integer.parseInt(time.getHours()) >= 5 && Integer.parseInt(time.getHours()) <= 9) {
+        int hours = Integer.parseInt(time.getHours());
+
+        if (hours >= 10 && hours <= 14)
+            hourLamp = "RROO";
+        else if (hours >= 5 && hours <= 9)
             hourLamp = "ROOO";
-        } else {
+        else
             hourLamp = "OOOO";
-        }
+
         return hourLamp;
     }
 }
