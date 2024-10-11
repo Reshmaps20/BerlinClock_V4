@@ -3,6 +3,7 @@ package com.bnpp.kata.berlinclock.service;
 import com.bnpp.kata.berlinclock.exception.TimeFormatException;
 import com.bnpp.kata.berlinclock.model.BerlinClockResponse;
 import com.bnpp.kata.berlinclock.model.TimeComponent;
+import com.bnpp.kata.berlinclock.validation.TimeValidator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,7 +17,8 @@ public class BerlinClockServiceTest {
 
     @BeforeEach
     public void setup() {
-        berlinClockService = new BerlinClockService();
+        TimeValidator timeValidator= new TimeValidator();
+        berlinClockService = new BerlinClockService(timeValidator);
     }
 
     @Test
