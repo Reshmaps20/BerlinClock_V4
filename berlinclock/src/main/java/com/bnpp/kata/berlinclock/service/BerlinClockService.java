@@ -13,7 +13,7 @@ public class BerlinClockService {
         String secondsLamp = (Integer.parseInt(time.getSeconds()) % 2 == 0) ? "Y" : "O";
 
         return BerlinClockResponse.builder()
-                .detailedBerlinTime(DetailedBerlinTime.builder().secondsLamp(secondsLamp).build())
+                .detailedBerlinTime(DetailedBerlinTime.builder().secondsLamp(secondsLamp).topFiveHourLamps("OOOO").build())
                 .build();
     }
 }
