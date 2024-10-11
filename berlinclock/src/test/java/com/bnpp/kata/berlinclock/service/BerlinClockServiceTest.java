@@ -289,4 +289,14 @@ public class BerlinClockServiceTest {
 
         assertThrows(TimeFormatException.class, () -> berlinClockService.convertToBerlinTime(timeComponent));
     }
+
+    @Test
+    @DisplayName("Throw Time Format Exception : if the input hour is greater than 23")
+    public void convertToBerlinTime_passHourGreaterThan23_shouldThrowTimeFormatException() {
+
+        TimeComponent timeComponent = TimeComponent.builder().hours(SEVENTY).minutes(ZERO).seconds(ZERO).build();
+
+        assertThrows(TimeFormatException.class, () -> berlinClockService.convertToBerlinTime(timeComponent));
+
+    }
 }

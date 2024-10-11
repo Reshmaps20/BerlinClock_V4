@@ -9,4 +9,5 @@ public class Constants {
     public static final String REPLACE_YYY = "YYY";
     public static final String REPLACE_TO_YYR = "YYR";
     public static final String TIME_IS_EMPTY_ERROR = "Invalid Time. Time cannot be null or empty.";
+    public static final String INVALID_HOUR_ERROR = "Hours must be between 0 and 23.";
 }
