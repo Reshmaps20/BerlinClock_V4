@@ -6,36 +6,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static com.bnpp.kata.berlinclock.constants.TestConstants.*;
 
 public class BerlinClockServiceTest {
 
     private BerlinClockService berlinClockService;
-    private static final String ZERO = "00";
-    private static final String TWO = "02";
-    private static final String FIVE = "05";
-    private static final String SIX = "06";
-    private static final String TWELVE = "12";
-    private static final String FOURTEEN = "14";
-    private static final String FIFTEEN = "15";
-    private static final String EIGHTEEN = "18";
-    private static final String TWENTY = "20";
-    private static final String TWENTYTHREE = "23";
-    private static final String YELLOW = "Y";
-    private static final String OFF = "O";
-    public static final String FOUR_LAMPS_OFF = "OOOO";
-    private static final String FIRST_LAMP_RED = "ROOO";
-    public static final String FIRST_TWO_LAMPS_RED = "RROO";
-    public static final String FIRST_THREE_LAMPS_RED = "RRRO";
-    public static final String ALL_FOUR_LAMPS_RED = "RRRR";
-    private static final String ALL_11_LAMPS_OFF = "OOOOOOOOOOO";
-    public static final String ONE_LAMP_YELLOW_OUT_OF_ELEVEN = "YOOOOOOOOOO";
-    public static final String TWO_LAMP_YELLOW_OUT_OF_ELEVEN = "YYOOOOOOOOO";
-    public static final String THIRD_LAMP_RED_OUT_OF_ELEVEN = "YYROOOOOOOO";
-    public static final String FIVE_MINT_FOURLAMPON = "YYRYOOOOOOO";
-    public static final String FIRST_LAMP_YELLOW = "YOOO";
-    public static final String FIRST_TWO_LAMPS_YELLOW = "YYOO";
-    public static final String FIRST_THREE_LAMPS_YELLOW = "YYYO";
-    public static final String ALL_FOUR_LAMPS_YELLOW = "YYYY";
 
     @BeforeEach
     public void setup() {
