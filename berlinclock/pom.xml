@@ -110,6 +110,8 @@
 								<useBuilder>true</useBuilder>
 								<additionalModelTypeAnnotations>
 									@lombok.Builder
+									@lombok.NoArgsConstructor
+									@lombok.AllArgsConstructor
 								</additionalModelTypeAnnotations>
 							</configOptions>
 							<additionalProperties>
