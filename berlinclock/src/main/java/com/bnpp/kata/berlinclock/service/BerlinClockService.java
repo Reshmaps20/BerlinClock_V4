@@ -1,17 +1,18 @@
 package com.bnpp.kata.berlinclock.service;
 
+import com.bnpp.kata.berlinclock.model.BerlinClockResponse;
+import com.bnpp.kata.berlinclock.model.TimeComponent;
 import org.springframework.stereotype.Service;
 
 @Service
 public class BerlinClockService {
 
-    public String convertToBerlinTime(String time) {
+    public BerlinClockResponse convertToBerlinTime(TimeComponent time) {
 
-        String result;
-        if (Integer.parseInt(time) % 2 == 0)
-            result = "Y";
-        else
-            result = "O";
-        return result;
+        String secondsLamp = (Integer.parseInt(time.getSeconds()) % 2 == 0) ? "Y" : "O";
+
+        return BerlinClockResponse.builder()
+                .berlinTime(secondsLamp)
+                .build();
     }
 }
