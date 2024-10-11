@@ -15,6 +15,7 @@ public class BerlinClockServiceTest {
     private static final String FIVE = "05";
     private static final String SIX = "06";
     private static final String TWELVE = "12";
+    private static final String FOURTEEN = "14";
     private static final String EIGHTEEN = "18";
     private static final String TWENTYTHREE = "23";
     private static final String YELLOW = "Y";
@@ -150,5 +151,16 @@ public class BerlinClockServiceTest {
         BerlinClockResponse response = berlinClockService.convertToBerlinTime(timeComponent);
 
         assertThat(response.getDetailedBerlinTime().getBottomOneHourLamps()).isEqualTo(FIRST_THREE_LAMPS_RED);
+    }
+
+    @Test
+    @DisplayName("One Hour Row : all lamps should be RED when hour divided by 5 has reminder 4")
+    public void convertToBerlinTime_whenHourDividedByFiveHasRemainderFour_allLampShouldBeRED() {
+
+        TimeComponent timeComponent = TimeComponent.builder().hours(FOURTEEN).minutes(ZERO).seconds(ZERO).build();
+
+        BerlinClockResponse response = berlinClockService.convertToBerlinTime(timeComponent);
+
+        assertThat(response.getDetailedBerlinTime().getBottomOneHourLamps()).isEqualTo(ALL_FOUR_LAMPS_RED);
     }
 }
