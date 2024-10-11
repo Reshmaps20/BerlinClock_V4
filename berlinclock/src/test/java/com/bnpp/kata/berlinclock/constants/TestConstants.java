@@ -31,4 +31,5 @@ public class TestConstants {
     public static final String FIRST_THREE_LAMPS_YELLOW = "YYYO";
     public static final String ALL_FOUR_LAMPS_YELLOW = "YYYY";
     public static final String EMPTY = "";
+    public static final String DIGITAL_TIME = "14:23:05";
 }

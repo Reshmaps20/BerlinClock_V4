@@ -9,6 +9,7 @@ import com.bnpp.kata.berlinclock.store.LampRow;
 import com.bnpp.kata.berlinclock.validation.TimeValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -26,6 +27,7 @@ public class BerlinClockService {
         Map<String, String> lamps = calculateLamps(time);
 
         return BerlinClockResponse.builder()
+                .digitalTime(convertToDigitalTime(time))
                 .detailedBerlinTime(createDetailedBerlinTime(lamps))
                 .build();
     }
@@ -75,5 +77,12 @@ public class BerlinClockService {
         return IntStream.range(ZERO, rowLength)
                 .mapToObj(lampIndex -> (lampIndex < hourValue) ? Lamp.RED.getValue() : Lamp.OFF.getValue())
                 .collect(Collectors.joining());
+    }
+
+    private String convertToDigitalTime(TimeComponent time) {
+
+        return Arrays.stream(new int[] { Integer.parseInt(time.getHours()), Integer.parseInt(time.getMinutes()),Integer.parseInt(time.getSeconds()) })
+                .mapToObj(timeValue -> String.format(TIME_FORMAT, timeValue))
+                .collect(Collectors.joining(TIME_SEPARATOR));
     }
 }

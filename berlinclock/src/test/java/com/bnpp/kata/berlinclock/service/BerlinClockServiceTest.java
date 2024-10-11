@@ -343,4 +343,15 @@ public class BerlinClockServiceTest {
 
         assertThrows(TimeFormatException.class, () -> berlinClockService.convertToBerlinTime(timeComponent));
     }
+
+    @Test
+    @DisplayName("Display Digital Time for the input")
+    public void convertToBerlinTime_passHoursMinutesSeconds_responseShouldContainDigitalTime() {
+
+        TimeComponent timeComponent = TimeComponent.builder().hours(FOURTEEN).minutes(TWENTYTHREE).seconds(FIVE).build();
+
+        BerlinClockResponse response = berlinClockService.convertToBerlinTime(timeComponent);
+
+        assertThat(response.getDigitalTime()).isEqualTo(DIGITAL_TIME);
+    }
 }
