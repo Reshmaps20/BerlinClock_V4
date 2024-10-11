@@ -4,6 +4,8 @@ import com.bnpp.kata.berlinclock.model.BerlinClockResponse;
 import com.bnpp.kata.berlinclock.model.DetailedBerlinTime;
 import com.bnpp.kata.berlinclock.model.TimeComponent;
 import org.springframework.stereotype.Service;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Service
 public class BerlinClockService {
@@ -24,20 +26,7 @@ public class BerlinClockService {
 
     private static String getHoursLamp(TimeComponent time) {
 
-        String hourLamp;
         int hours = Integer.parseInt(time.getHours());
-
-        if (hours >= 20 && hours <= 23)
-            hourLamp = "RRRR";
-        else if (hours > 15 && hours <= 19)
-            hourLamp = "RRRO";
-        else if (hours >= 10 && hours <= 14)
-            hourLamp = "RROO";
-        else if (hours >= 5 && hours <= 9)
-            hourLamp = "ROOO";
-        else
-            hourLamp = "OOOO";
-
-        return hourLamp;
+        return IntStream.range(0, 4).mapToObj(lampIndex -> (lampIndex < hours / 5) ? "R" : "O").collect(Collectors.joining());
     }
 }
