@@ -30,7 +30,9 @@ public class BerlinClockService {
         int minutes = Integer.parseInt(time.getMinutes());
         String mintLamps ;
 
-        if (minutes % 5 == 2)
+        if (minutes % 5 == 3)
+            mintLamps =  "YYYO";
+        else if (minutes % 5 == 2)
             mintLamps =  "YYOO";
         else if (minutes % 5 == 1)
             mintLamps = "YOOO";

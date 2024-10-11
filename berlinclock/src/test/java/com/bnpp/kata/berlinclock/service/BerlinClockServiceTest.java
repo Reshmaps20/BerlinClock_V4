@@ -34,6 +34,7 @@ public class BerlinClockServiceTest {
     public static final String FIVE_MINT_FOURLAMPON = "YYRYOOOOOOO";
     public static final String FIRST_LAMP_YELLOW = "YOOO";
     public static final String FIRST_TWO_LAMPS_YELLOW = "YYOO";
+    public static final String FIRST_THREE_LAMPS_YELLOW = "YYYO";
 
     @BeforeEach
     public void setup() {
@@ -258,5 +259,16 @@ public class BerlinClockServiceTest {
         BerlinClockResponse response = berlinClockService.convertToBerlinTime(timeComponent);
 
         assertThat(response.getDetailedBerlinTime().getBottomOneMinuteLamps()).isEqualTo(FIRST_TWO_LAMPS_YELLOW);
+    }
+
+    @Test
+    @DisplayName("One Minute Row : first three lamp should be YELLOW when minute divided by 5 has reminder 3")
+    public void convertToBerlinTime_whenMinuteDividedByFiveHasRemainderThree_firstThreeLampShouldBeYellow() {
+
+        TimeComponent timeComponent = TimeComponent.builder().hours(ZERO).minutes(EIGHTEEN).seconds(ZERO).build();
+
+        BerlinClockResponse response = berlinClockService.convertToBerlinTime(timeComponent);
+
+        assertThat(response.getDetailedBerlinTime().getBottomOneMinuteLamps()).isEqualTo(FIRST_THREE_LAMPS_YELLOW);
     }
 }
