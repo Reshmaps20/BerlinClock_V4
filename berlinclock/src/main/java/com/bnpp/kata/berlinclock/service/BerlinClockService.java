@@ -27,17 +27,11 @@ public class BerlinClockService {
     private String getMinuteLamp(TimeComponent time) {
 
         int minutes = Integer.parseInt(time.getMinutes());
-        StringBuilder lamps = new StringBuilder();
+        String mintLamps = IntStream.range(0, 11)
+                .mapToObj(lampIndex -> (lampIndex < minutes / 5) ? Lamp.YELLOW.getValue() : Lamp.OFF.getValue())
+                .collect(Collectors.joining());
 
-        for (int lampIndex = 0; lampIndex < 11; lampIndex++) {
-            if (lampIndex < minutes / 5) {
-                lamps.append(Lamp.YELLOW.getValue());
-            } else {
-                lamps.append(Lamp.OFF.getValue());
-            }
-        }
-
-        return lamps.toString().replace("YYY", "YYR");
+        return mintLamps.replace("YYY", "YYR");
     }
 
     private DetailedBerlinTime createDetailedBerlinTime(String secondsLamp, String hourLamp, String oneHourLamp, String fiveMinuteLamp) {
