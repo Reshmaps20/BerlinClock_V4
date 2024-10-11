@@ -107,4 +107,15 @@ public class BerlinClockServiceTest {
 
         assertThat(response.getDetailedBerlinTime().getTopFiveHourLamps()).isEqualTo(ALL_FOUR_LAMPS_RED);
     }
+
+    @Test
+    @DisplayName("One Hour Row : should be OFF when given hour is divisible by 5")
+    public void convertToBerlinTime_passHoursDivisibleByFive_allOneHourLampShouldBeOFF() {
+
+        TimeComponent timeComponent = TimeComponent.builder().hours(FIVE).minutes(ZERO).seconds(ZERO).build();
+
+        BerlinClockResponse response = berlinClockService.convertToBerlinTime(timeComponent);
+
+        assertThat(response.getDetailedBerlinTime().getBottomOneHourLamps()).isEqualTo(FOUR_LAMPS_OFF);
+    }
 }
