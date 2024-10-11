@@ -12,5 +12,7 @@ public class Constants {
     public static final String INVALID_HOUR_ERROR = "Hours must be between 0 and 23.";
     public static final String INVALID_MINUTE_ERROR = "Minutes must be between 0 and 59.";
     public static final String INVALID_SECOND_ERROR = "Seconds must be between 0 and 59.";
-
+    public static final int MAX_HOURS = 23;
+    public static final int MAX_MINUTES = 59;
+    public static final int MAX_SECONDS = 59;
 }
