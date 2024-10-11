@@ -19,5 +19,8 @@ public class TimeValidator {
         if(Integer.parseInt(time.getMinutes()) < 0 || Integer.parseInt(time.getMinutes()) > 59) {
             throw new TimeFormatException(INVALID_MINUTE_ERROR);
         }
+        if(Integer.parseInt(time.getSeconds()) > 59) {
+            throw new TimeFormatException(INVALID_SECOND_ERROR);
+        }
     }
 }

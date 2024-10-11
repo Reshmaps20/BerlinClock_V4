@@ -11,4 +11,6 @@ public class Constants {
     public static final String TIME_IS_EMPTY_ERROR = "Invalid Time. Time cannot be null or empty.";
     public static final String INVALID_HOUR_ERROR = "Hours must be between 0 and 23.";
     public static final String INVALID_MINUTE_ERROR = "Minutes must be between 0 and 59.";
+    public static final String INVALID_SECOND_ERROR = "Seconds must be between 0 and 59.";
+
 }
