@@ -16,19 +16,25 @@ public class BerlinClockService {
         String secondsLamp = getSecondsLamp(time);
         String hourLamp = getHoursLamp(time);
         String oneHourLamp = getOneHourLamp(time);
-        DetailedBerlinTime detailedBerlinTime = createDetailedBerlinTime(secondsLamp,hourLamp,oneHourLamp);
+        String fiveMinuteLamp = getMinuteLamp(time);
+        DetailedBerlinTime detailedBerlinTime = createDetailedBerlinTime(secondsLamp,hourLamp,oneHourLamp,fiveMinuteLamp);
         
         return BerlinClockResponse.builder()
                 .detailedBerlinTime(detailedBerlinTime)
                 .build();
     }
 
-    private DetailedBerlinTime createDetailedBerlinTime(String secondsLamp, String hourLamp, String oneHourLamp) {
+    private String getMinuteLamp(TimeComponent time) {
+        return "OOOOOOOOOOO";
+    }
+
+    private DetailedBerlinTime createDetailedBerlinTime(String secondsLamp, String hourLamp, String oneHourLamp, String fiveMinuteLamp) {
 
         return DetailedBerlinTime.builder()
                 .secondsLamp(secondsLamp)
                 .topFiveHourLamps(hourLamp)
                 .bottomOneHourLamps(oneHourLamp)
+                .topFiveMinuteLamps(fiveMinuteLamp)
                 .build();
     }
 
