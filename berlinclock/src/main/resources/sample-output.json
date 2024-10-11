@@ -1,0 +1,11 @@
+{
+  "digitalTime": "23:59:59",
+  "detailedBerlinTime": {
+    "secondsLamp": "O",
+    "topFiveHourLamps": "RRRR",
+    "bottomOneHourLamps": "RRRO",
+    "topFiveMinuteLamps": "YYRYYRYYRYY",
+    "bottomOneMinuteLamps": "YYYY"
+  },
+  "berlinTime": "O RRRR RRRO YYRYYRYYRYY YYYY"
+}
