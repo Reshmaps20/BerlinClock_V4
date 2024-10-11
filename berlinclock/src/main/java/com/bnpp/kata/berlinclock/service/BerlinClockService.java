@@ -25,7 +25,17 @@ public class BerlinClockService {
     }
 
     private String getMinuteLamp(TimeComponent time) {
-        return "OOOOOOOOOOO";
+
+        int minutes = Integer.parseInt(time.getMinutes());
+        StringBuilder lamps = new StringBuilder();
+
+        if (minutes >= 5 && minutes < 10) {
+            lamps.append(Lamp.YELLOW.getValue());
+        }
+        while (lamps.length() < 11) {
+            lamps.append(Lamp.OFF.getValue());
+        }
+        return lamps.toString();
     }
 
     private DetailedBerlinTime createDetailedBerlinTime(String secondsLamp, String hourLamp, String oneHourLamp, String fiveMinuteLamp) {
