@@ -25,7 +25,9 @@ public class BerlinClockServiceTest {
     @DisplayName("Seconds Lamp : should be ON for even seconds")
     public void convertToBerlinTime_passEvenSeconds_secondsLampShouldBeON() {
 
-        BerlinClockResponse result = berlinClockService.convertToBerlinTime(TimeComponent.builder().seconds(TWO).build());
+        TimeComponent timeComponent = TimeComponent.builder().hours(ZERO).minutes(ZERO).seconds(TWO).build();
+
+        BerlinClockResponse result = berlinClockService.convertToBerlinTime(timeComponent);
 
         assertThat(result.getDetailedBerlinTime().getSecondsLamp()).isEqualTo(YELLOW);
     }
@@ -34,7 +36,9 @@ public class BerlinClockServiceTest {
     @DisplayName("Seconds Lamp : should be OFF for odd seconds")
     public void convertToBerlinTime_passOddSeconds_secondsLampShouldBeOFF() {
 
-        BerlinClockResponse result = berlinClockService.convertToBerlinTime(TimeComponent.builder().seconds(FIVE).build());
+        TimeComponent timeComponent = TimeComponent.builder().hours(ZERO).minutes(ZERO).seconds(FIVE).build();
+
+        BerlinClockResponse result = berlinClockService.convertToBerlinTime(timeComponent);
 
         assertThat(result.getDetailedBerlinTime().getSecondsLamp()).isEqualTo(OFF);
     }
