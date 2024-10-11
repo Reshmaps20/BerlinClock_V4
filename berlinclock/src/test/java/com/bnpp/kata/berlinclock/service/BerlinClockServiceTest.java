@@ -22,4 +22,13 @@ public class BerlinClockServiceTest {
 
         assertThat(result).isEqualTo("Y");
     }
+
+    @Test
+    @DisplayName("Seconds Lamp : should be OFF for odd seconds")
+    public void convertToBerlinTime_passOddSeconds_secondsLampShouldBeOFF() {
+
+        String result = berlinClockService.convertToBerlinTime("05");
+
+        assertThat(result).isEqualTo("O");
+    }
 }

@@ -6,6 +6,12 @@ import org.springframework.stereotype.Service;
 public class BerlinClockService {
 
     public String convertToBerlinTime(String time) {
-        return "Y";
+
+        String result;
+        if (Integer.parseInt(time) % 2 == 0)
+            result = "Y";
+        else
+            result = "O";
+        return result;
     }
 }
