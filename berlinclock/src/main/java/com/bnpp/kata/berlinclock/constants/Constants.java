@@ -8,4 +8,5 @@ public class Constants {
     public static final int SECONDS_DIVIDER = 2;
     public static final String REPLACE_YYY = "YYY";
     public static final String REPLACE_TO_YYR = "YYR";
+    public static final String TIME_IS_EMPTY_ERROR = "Invalid Time. Time cannot be null or empty.";
 }

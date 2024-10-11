@@ -1,5 +1,6 @@
 package com.bnpp.kata.berlinclock.service;
 
+import com.bnpp.kata.berlinclock.exception.TimeFormatException;
 import com.bnpp.kata.berlinclock.model.BerlinClockResponse;
 import com.bnpp.kata.berlinclock.model.TimeComponent;
 import org.junit.jupiter.api.BeforeEach;
@@ -7,6 +8,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static com.bnpp.kata.berlinclock.constants.TestConstants.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class BerlinClockServiceTest {
 
@@ -257,5 +259,14 @@ public class BerlinClockServiceTest {
         BerlinClockResponse response = berlinClockService.convertToBerlinTime(timeComponent);
 
         assertThat(response.getDetailedBerlinTime().getBottomOneMinuteLamps()).isEqualTo(ALL_FOUR_LAMPS_YELLOW);
+    }
+
+    @Test
+    @DisplayName("Throw Time Format Exception : if the input hours are empty")
+    public void convertToBerlinTime_checkWhetherTheInputHoursAreNotEmpty_shouldThrowTimeFormatException() {
+
+        TimeComponent timeComponent = TimeComponent.builder().hours(EMPTY).minutes(FOURTEEN).seconds(ZERO).build();
+
+        assertThrows(TimeFormatException.class, () -> berlinClockService.convertToBerlinTime(timeComponent));
     }
 }
