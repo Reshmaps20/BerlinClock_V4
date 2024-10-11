@@ -13,6 +13,7 @@ public class TestConstants {
     public static final String TWENTY = "20";
     public static final String TWENTYTHREE = "23";
     public static final String SEVENTY = "70";
+    public static final String MINUS_ONE = "-1";
     public static final String YELLOW = "Y";
     public static final String OFF = "O";
     public static final String FOUR_LAMPS_OFF = "OOOO";

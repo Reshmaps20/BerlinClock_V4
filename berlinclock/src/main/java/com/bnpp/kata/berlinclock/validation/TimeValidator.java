@@ -13,7 +13,7 @@ public class TimeValidator {
         if (StringUtils.isEmpty(time.getHours()) || StringUtils.isEmpty(time.getMinutes()) || StringUtils.isEmpty(time.getSeconds())) {
             throw new TimeFormatException(TIME_IS_EMPTY_ERROR);
         }
-        if(Integer.parseInt(time.getHours()) > 23) {
+        if(Integer.parseInt(time.getHours()) < 0 || Integer.parseInt(time.getHours()) > 23) {
             throw new TimeFormatException(INVALID_HOUR_ERROR);
         }
     }
