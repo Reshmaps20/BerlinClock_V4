@@ -25,7 +25,7 @@ public class BerlinClockServiceTest {
 
         BerlinClockResponse result = berlinClockService.convertToBerlinTime(TimeComponent.builder().seconds(TWO).build());
 
-        assertThat(result.getBerlinTime()).contains(YELLOW);
+        assertThat(result.getDetailedBerlinTime().getSecondsLamp()).isEqualTo(YELLOW);
     }
 
     @Test
@@ -34,6 +34,6 @@ public class BerlinClockServiceTest {
 
         BerlinClockResponse result = berlinClockService.convertToBerlinTime(TimeComponent.builder().seconds(FIVE).build());
 
-        assertThat(result.getBerlinTime()).contains(OFF);
+        assertThat(result.getDetailedBerlinTime().getSecondsLamp()).isEqualTo(OFF);
     }
 }
