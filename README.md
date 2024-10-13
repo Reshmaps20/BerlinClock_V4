@@ -1,4 +1,6 @@
 # Berlin Clock
+<img src="berlin-clock-image.png" alt="Berlin Clock" width="300" />
+
 ## About this Kata
 This short and simple Kata should be performed using Test Driven Development (TDD).
 ## Rules
